@@ -11,6 +11,9 @@ Do you spend more time on your phone than you would like? Have you tried using S
 
 Then your partner can hopefully give you some gentle encouragement to stop scrolling, or maybe just knowing that they can see your phone usage at any time will be motivating enough!
 
+<p align="center">
+  <img src="Assets/Dashboard_example.png" width="300" height="300" alt="dashboard example">
+</p>
 
 ## How it works
 The main application in `app.py` queries KnowledgeC.db, the local SQLite database where Apple stores usage stats for your iPhone (and other Apple devices) on your Mac. Using Flask, `app.py` then renders a static html file locally (`index.html`), populated with the latest phone usage data queried from KnowledgeC. The html file uses JavaScript, Jinja templates and the Charts.js framework to display the Screen Time information for the day, with a breakdown by app for the top 7 apps. This dashboard is then deployed in production via Surge.sh 
