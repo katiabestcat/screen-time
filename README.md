@@ -5,7 +5,7 @@ Break your phone addiction with the Screen Time accountability tool
 ## Description: 
 Do you spend more time on your phone than you would like? Have you tried using Screen Time app limits and other Screen Time management apps, only to turn them off to keep scrolling? With this application you can share your daily phone usage stats with a friend or partner, so that they can help you manage your phone addiction!
 
-Current features:
+## Current features:
 - your chosen accountability partner can see how much you used your phone today in (almost) real time in a web dashboard
 - they will also receive a Telegram alert when you go over a set phone usage threshold
 
@@ -13,7 +13,7 @@ Then your partner can hopefully give you some gentle encouragement to stop scrol
 
 
 ## How it works
-The main application in `app.py` queries KnowledgeC.db, the local SQLite database where Apple stores usage stats for your iPhone (and other Apple devices) on your Mac. Using Flask, app.py then renders a static html file locally (`index.html`), populated with the latest phone usage data queried from KnowledgeC. The html file uses JavaScript, Jinja templates and the Charts.js framework to display the Screen Time information for the day, with a breakdown by app for the top 7 apps. This dashboard is then deployed in production via Surge.sh 
+The main application in `app.py` queries KnowledgeC.db, the local SQLite database where Apple stores usage stats for your iPhone (and other Apple devices) on your Mac. Using Flask, `app.py` then renders a static html file locally (`index.html`), populated with the latest phone usage data queried from KnowledgeC. The html file uses JavaScript, Jinja templates and the Charts.js framework to display the Screen Time information for the day, with a breakdown by app for the top 7 apps. This dashboard is then deployed in production via Surge.sh 
 
 `app.py` runs whenever there are changes to the KnowledgeC.db file, which updates on a regular basis when Apple devices are being used. These automated application runs are triggered thanks to Meta's Watchman open-source application, which allows you to monitor the device usage database file and trigger the main application script whenever it changes. 
 
@@ -123,4 +123,4 @@ Privacy: one could choose to only display the overall Screen Time, instead of th
 
 
 ## Credits 
-- to the [CS50](https://cs50.harvard.edu/x/2023/) staff for making an amazing course that enabled me to make this application
+- to the CS50 staff for making an [amazing course](https://cs50.harvard.edu/x/2023/) that enabled me to make this application
