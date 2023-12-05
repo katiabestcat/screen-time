@@ -50,30 +50,56 @@ Note: you might need to grant Full Disk access to the applications that need to 
 
 Open the repository folder: 
 
-`$ cd Screentime`
+```bash
+$ cd Screentime`
+```
 
-Then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable by running `$ chmod a+x create_screentimedb.zsh`, then execute it: `$ ./create_screentimedb.zsh`
-	- this script also creates the screentime table, which will store your Screen Time stats over time (Apple only stores your stats for the past 28 days by default, so this table will allow you to store it for longer, and analyse trends over time if you wish)
-	- you can set up a daily cron job to run the database update script (`update_screentimedb.zsh`): 
-		- first make the script executable: 
-		`$ chmod a+x update_screentimedb.zsh`
-		- then set up a cron job to run it every day: `$ crontab -e` to edit your cron jobs, then enter this line, if you want to run it, say, at 11.59pm every day: 
-		`59 23 * * * /path/to/update_screentimedb.zsh` 
+Then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable, then execute it:
+
+```bash
+$ chmod a+x create_screentimedb.zsh
+$ ./create_screentimedb.zsh
+```
+
+This script also creates the screentime table, which will store your Screen Time stats over time (Apple only stores your stats for the past 28 days by default, so this table will allow you to store it for longer, and analyse trends over time if you wish)
+
+You can set up a daily cron job to run the database update script (`update_screentimedb.zsh`). First make the script executable: 
+
+```bash
+$ chmod a+x update_screentimedb.zsh
+```
+
+Then set up a cron job to run it every day: `$ crontab -e` to edit your cron jobs, then enter this line, if you want to run it, say, at 11.59pm every day: 
+
+```bash
+59 23 * * * /path/to/update_screentimedb.zsh
+```
 
 In the `.env_example` file, fill in the paths to your KnowledgeC and screentime databases, as well as your Telegram bot token and chat id
 
 Navigate to the folder where your KnowledgeC.db resides:
-`cd /Users/{user}/Library/Application\ Support/Knowledge/knowledgeC.db`
+
+```bash
+cd /Users/{user}/Library/Application\ Support/Knowledge/knowledgeC.db
+```
 
 Make the run_app script executable: 
-`chmod a+x <path/to/your/project/folder/run_app.zsh>`
+
+```bash
+chmod a+x <path/to/your/project/folder/run_app.zsh>
+```
 
 Set up Watchman to watch the file and trigger the script when it changes: 
-`watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>`
+
+```bash
+watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>
+```
 
 Finally, navigate to the static folder of your repository, where the html file is located, and run Surge, appending your custom domain name if you wish: 
-`$ cd <path/to/your/project/folder/Screentime/static>`
-`$ surge --domain https://custom.domain.name.surge.sh`
+```bash
+$ cd <path/to/your/project/folder/Screentime/static>
+$ surge --domain https://custom.domain.name.surge.sh
+```
 
 
 ## Known issues and limitations
