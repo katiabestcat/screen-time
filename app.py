@@ -115,7 +115,7 @@ def before_request():
     if (total > 120) and (last_run.date() < now.date()):
         TOKEN = os.environ['BOT_TOKEN']
         chat_id = os.environ['CHAT_ID']
-        message= f"Mwnw! your cat has spent more than 2 hours on its phone today. The cat has spent the most time on {apps[0]} ({minutes[0]} minutes), {apps[1]} ({minutes[1]} minutes) and {apps[2]} ({minutes[2]} minutes). Don't hesitate to give it a gentle nudge to stop scrolling."
+        message= f"Oh no! your partner has spent more than 2 hours on their phone today. They have spent the most time on {apps[0]} ({minutes[0]} minutes), {apps[1]} ({minutes[1]} minutes) and {apps[2]} ({minutes[2]} minutes). Don't hesitate to give them a gentle nudge to stop scrolling."
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
         print(requests.get(url).json())
         
