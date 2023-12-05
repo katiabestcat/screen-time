@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" content="initial-scale=1, width=device-width"/>
+        <title>{{ title }}</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <h1>{{ title }}: {{ total }}</h1>
+        <div class="chart-container" style="position: relative; height:80vh; width:160vw" content="initial-scale=1, width=device-width">
+            <canvas id="myChart"></canvas>
+            <script>
+            // get bar chart canvas
+            var ctx = document.getElementById("myChart").getContext("2d");
+
+            // draw bar chart
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ labels|tojson }},
+                    datasets: [{ 
+                            axis: 'y',
+                            label: 'screentime',
+                            data: JSON.parse('{{values}}'),
+                            fill: false,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            </script>
+        </div>
+    </body>
+
+  </html>

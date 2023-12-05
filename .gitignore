@@ -1,0 +1,9 @@
+archive/
+.env
+__pycache__
+.vscode
+argv.json
+flask_session/
+CNAME
+.DS_Store
+static/.DS_Store
