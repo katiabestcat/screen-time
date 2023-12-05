@@ -12,7 +12,7 @@ Do you spend more time on your phone than you would like? Have you tried using S
 Then your partner can hopefully give you some gentle encouragement to stop scrolling, or maybe just knowing that they can see your phone usage at any time will be motivating enough!
 
 <p align="center">
-  <img src="Assets/Dashboard_example.png" width="300" height="300" alt="dashboard example">
+  <img src="Assets/Dashboard_example.png" width="600" height="300" alt="dashboard example">
 </p>
 
 ## How it works
