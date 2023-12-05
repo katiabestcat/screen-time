@@ -42,7 +42,9 @@ for this project you will need to install
 ### Installation
 First, clone this repository to the folder where you store your projects: 
 
-`$ git clone https://github.com/katiabestcat/screen-time.git`
+```bash
+$ git clone https://github.com/katiabestcat/screen-time.git
+```
 
 Note: you might need to grant Full Disk access to the applications that need to access the KnowledgeC database file in the Application Support folder (for example your code editor, the Terminal and Watchman)
 
