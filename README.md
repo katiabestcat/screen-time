@@ -40,23 +40,36 @@ for this project you will need to install
 - If you want to send alerts to your accountability partner via Telegram, you'll have to create a Telegram bot - instructions [here](https://www.cytron.io/tutorial/how-to-create-a-telegram-bot-get-the-api-key-and-chat-id). Make sure to take note of your bot token and of the chat id you have with your accountability partner and fill them in the `.env` file. The main `app.py` script will monitor your daily phone usage and send out a Telegram alert to your partner when it goes over 2 hours.
 
 ### Installation
-1.  clone this repository to the folder where you store your projects: `$ git clone https://github.com/katiabestcat/screen-time.git`
-2. you might need to grant Full Disk access to the applications that need to access the KnowledgeC database file in the Application Support folder (for example your code editor, the Terminal and Watchman)
-3. open the repository folder: `$ cd Screentime`
-4. then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable by running `$ chmod a+x create_screentimedb.zsh`, then execute it: `$ ./create_screentimedb.zsh`
+First, clone this repository to the folder where you store your projects: 
+`$ git clone https://github.com/katiabestcat/screen-time.git`
+
+Note: you might need to grant Full Disk access to the applications that need to access the KnowledgeC database file in the Application Support folder (for example your code editor, the Terminal and Watchman)
+
+Open the repository folder: 
+`$ cd Screentime`
+
+Then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable by running `$ chmod a+x create_screentimedb.zsh`, then execute it: `$ ./create_screentimedb.zsh`
 	- this script also creates the screentime table, which will store your Screen Time stats over time (Apple only stores your stats for the past 28 days by default, so this table will allow you to store it for longer, and analyse trends over time if you wish)
 	- you can set up a daily cron job to run the database update script (`update_screentimedb.zsh`): 
-		- first make the script executable: `$ chmod a+x update_screentimedb.zsh`
+		- first make the script executable: 
+		`$ chmod a+x update_screentimedb.zsh`
 		- then set up a cron job to run it every day: `$ crontab -e` to edit your cron jobs, then enter this line, if you want to run it, say, at 11.59pm every day: 
 		`59 23 * * * /path/to/update_screentimedb.zsh` 
-5. in the `.env_example` file, fill in the paths to your KnowledgeC and screentime databases, as well as your Telegram bot token and chat id.
-6. cd into the folder where your KnowledgeC.db resides:
-	- `cd /Users/{user}/Library/Application\ Support/Knowledge/knowledgeC.db`
-	- make the run_app script executable: `chmod a+x <path/to/your/project/folder/run_app.zsh>`
-	- set up Watchman to watch the file and trigger the script when it changes: `watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>`
-7. finally, cd into the static folder of your repository, where the html file is located, and run Surge, appending your custom domain name if you wish: 
-		`$ cd <path/to/your/project/folder/Screentime/static>`
-		`$ surge --domain https://custom.domain.name.surge.sh`
+
+In the `.env_example` file, fill in the paths to your KnowledgeC and screentime databases, as well as your Telegram bot token and chat id
+
+Navigate to the folder where your KnowledgeC.db resides:
+`cd /Users/{user}/Library/Application\ Support/Knowledge/knowledgeC.db`
+
+Make the run_app script executable: 
+`chmod a+x <path/to/your/project/folder/run_app.zsh>`
+
+Set up Watchman to watch the file and trigger the script when it changes: 
+`watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>`
+
+Finally, navigate to the static folder of your repository, where the html file is located, and run Surge, appending your custom domain name if you wish: 
+`$ cd <path/to/your/project/folder/Screentime/static>`
+`$ surge --domain https://custom.domain.name.surge.sh`
 
 
 ## Known issues and limitations
