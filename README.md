@@ -34,18 +34,20 @@ All the Screen Time history stays locally on your Mac, and only your latest Scre
 ### Dependencies
 for this project you will need to install
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/): a light-weight Python web framework that will generate the usage dashboard html. See instructions for installation at [this link](https://flask.palletsprojects.com/en/3.0.x/installation/), including how to create a virtual environment for Python
-- [python-dotenv](https://github.com/theskumar/python-dotenv#readme): this allows you to read environment variables from a .env file, which we'll use to store your Telegram bot token, Telegram chat id and the paths to your SQLite databases.  To install it, simply run `$ pip3 install python-dotenv` in your Terminal. You can see an example .env file in .env_example
+- [python-dotenv](https://github.com/theskumar/python-dotenv#readme): this allows you to read environment variables from a .env file, which we'll use to store your Telegram bot token, Telegram chat id and the paths to your SQLite databases.  To install it, simply run `$ pip3 install python-dotenv` in your Terminal. You can see an example .env file in `.env_example`
 - [Watchman](https://facebook.github.io/watchman/): this tool will monitor the KnowledgeC device usage database and trigger the main application in app.py whenever the database is updated so that an up-to-date phone usage dashboard can be generated. You can install it with Homebrew on MacOS: `$ brew update` and  `$ brew install watchman`
 - [Surge](https://surge.sh): this will allow you to deploy your html dashboard into production from the command line. You'll find installation instructions [here](https://surge.sh/help/getting-started-with-surge) 
 - If you want to send alerts to your accountability partner via Telegram, you'll have to create a Telegram bot - instructions [here](https://www.cytron.io/tutorial/how-to-create-a-telegram-bot-get-the-api-key-and-chat-id). Make sure to take note of your bot token and of the chat id you have with your accountability partner and fill them in the `.env` file. The main `app.py` script will monitor your daily phone usage and send out a Telegram alert to your partner when it goes over 2 hours.
 
 ### Installation
 First, clone this repository to the folder where you store your projects: 
+
 `$ git clone https://github.com/katiabestcat/screen-time.git`
 
 Note: you might need to grant Full Disk access to the applications that need to access the KnowledgeC database file in the Application Support folder (for example your code editor, the Terminal and Watchman)
 
 Open the repository folder: 
+
 `$ cd Screentime`
 
 Then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable by running `$ chmod a+x create_screentimedb.zsh`, then execute it: `$ ./create_screentimedb.zsh`
