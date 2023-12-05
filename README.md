@@ -18,7 +18,7 @@ Then your partner can hopefully give you some gentle encouragement to stop scrol
 ## How it works
 The main application in `app.py` queries KnowledgeC.db, the local SQLite database where Apple stores usage stats for your iPhone (and other Apple devices) on your Mac. Using Flask, `app.py` then renders a static html file locally (`index.html`), populated with the latest phone usage data queried from KnowledgeC. The html file uses JavaScript, Jinja templates and the Charts.js framework to display the Screen Time information for the day, with a breakdown by app for the top 7 apps. This dashboard is then deployed in production via Surge.sh 
 
-`app.py` runs whenever there are changes to the KnowledgeC.db file, which updates on a regular basis when Apple devices are being used. These automated application runs are triggered thanks to Meta's Watchman open-source application, which allows you to monitor the device usage database file and trigger the main application script whenever it changes. 
+`app.py` runs whenever there are changes to the KnowledgeC.db file, which updates on a regular basis when Apple devices are being used. These automated application runs are triggered thanks to Meta's Watchman open-source application, which allows you to monitor the device usage database file and trigger the main application with the `run_app.zsh` script whenever it changes. 
 
 The KnowledgeC file stores app names as bundle ids, which are not user facing. For example, it stores "Instagram" as "com.burbn.instagram". There is code in the main script to fetch the user-facing app name for each bundle id from the iTunes API and persist it in a SQLite table called app_name.
 
@@ -92,7 +92,7 @@ Make the run_app script executable:
 chmod a+x <path/to/your/project/folder/run_app.zsh>
 ```
 
-Set up Watchman to watch the database file and trigger the script when it changes: 
+Set up Watchman to watch the database file and run the main application when it changes: 
 
 ```bash
 watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>
