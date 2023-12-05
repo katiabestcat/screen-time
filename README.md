@@ -34,8 +34,8 @@ All the Screen Time history stays locally on your Mac, and only your latest Scre
 ### Dependencies
 for this project you will need to install
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/): a light-weight Python web framework that will generate the usage dashboard html. See instructions for installation at [this link](https://flask.palletsprojects.com/en/3.0.x/installation/), including how to create a virtual environment for Python
-- [python-dotenv](https://github.com/theskumar/python-dotenv#readme): this allows you to read environment variables from a .env file, which we'll use to store your Telegram bot token, Telegram chat id and the paths to your SQLite databases.  To install it, simply run `$ pip3 install python-dotenv` in your Terminal. You can see an example .env file in `.env_example`
-- [Watchman](https://facebook.github.io/watchman/): this tool will monitor the KnowledgeC device usage database and trigger the main application in app.py whenever the database is updated so that an up-to-date phone usage dashboard can be generated. You can install it with Homebrew on MacOS: `$ brew update` and  `$ brew install watchman`
+- [python-dotenv](https://github.com/theskumar/python-dotenv#readme): this allows you to read environment variables from a .env file, which we'll use to store your Telegram bot token, Telegram chat id and the paths to your SQLite databases.  To install it, simply run `pip3 install python-dotenv` in your Terminal. You can see an example .env file in `.env_example`
+- [Watchman](https://facebook.github.io/watchman/): this tool will monitor the KnowledgeC device usage database and trigger the main application in app.py whenever the database is updated so that an up-to-date phone usage dashboard can be generated. You can install it with Homebrew on MacOS: `brew update` and  `brew install watchman`
 - [Surge](https://surge.sh): this will allow you to deploy your html dashboard into production from the command line. You'll find installation instructions [here](https://surge.sh/help/getting-started-with-surge) 
 - If you want to send alerts to your accountability partner via Telegram, you'll have to create a Telegram bot - instructions [here](https://www.cytron.io/tutorial/how-to-create-a-telegram-bot-get-the-api-key-and-chat-id). Make sure to take note of your bot token and of the chat id you have with your accountability partner and fill them in the `.env` file. The main `app.py` script will monitor your daily phone usage and send out a Telegram alert to your partner when it goes over 2 hours.
 
@@ -43,7 +43,7 @@ for this project you will need to install
 First, clone this repository to the folder where you store your projects: 
 
 ```bash
-$ git clone https://github.com/katiabestcat/screen-time.git
+git clone https://github.com/katiabestcat/screen-time.git
 ```
 
 Note: you might need to grant Full Disk access to the applications that need to access the KnowledgeC database file in the Application Support folder (for example your code editor, the Terminal and Watchman)
@@ -51,14 +51,14 @@ Note: you might need to grant Full Disk access to the applications that need to 
 Open the repository folder: 
 
 ```bash
-$ cd Screentime`
+cd Screentime`
 ```
 
 Then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable, then execute it:
 
 ```bash
-$ chmod a+x create_screentimedb.zsh
-$ ./create_screentimedb.zsh
+chmod a+x create_screentimedb.zsh
+./create_screentimedb.zsh
 ```
 
 This script also creates the screentime table, which will store your Screen Time stats over time (Apple only stores your stats for the past 28 days by default, so this table will allow you to store it for longer, and analyse trends over time if you wish)
@@ -66,10 +66,10 @@ This script also creates the screentime table, which will store your Screen Time
 You can set up a daily cron job to run the database update script (`update_screentimedb.zsh`). First make the script executable: 
 
 ```bash
-$ chmod a+x update_screentimedb.zsh
+chmod a+x update_screentimedb.zsh
 ```
 
-Then set up a cron job to run it every day: `$ crontab -e` to edit your cron jobs, then enter this line, if you want to run it, say, at 11.59pm every day: 
+Then set up a cron job to run it every day: `crontab -e` to edit your cron jobs, then enter this line, if you want to run it, say, at 11.59pm every day: 
 
 ```bash
 59 23 * * * /path/to/update_screentimedb.zsh
@@ -89,7 +89,7 @@ Make the run_app script executable:
 chmod a+x <path/to/your/project/folder/run_app.zsh>
 ```
 
-Set up Watchman to watch the file and trigger the script when it changes: 
+Set up Watchman to watch the database file and trigger the script when it changes: 
 
 ```bash
 watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>
@@ -97,8 +97,8 @@ watchman-make -p '**/*.db' --run <path/to/your/project/folder/run_app.zsh>
 
 Finally, navigate to the static folder of your repository, where the html file is located, and run Surge, appending your custom domain name if you wish: 
 ```bash
-$ cd <path/to/your/project/folder/Screentime/static>
-$ surge --domain https://custom.domain.name.surge.sh
+cd <path/to/your/project/folder/Screentime/static>
+surge --domain https://custom.domain.name.surge.sh
 ```
 
 
