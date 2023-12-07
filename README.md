@@ -55,7 +55,7 @@ Note: you might need to grant Full Disk access to the applications that need to 
 Open the repository folder: 
 
 ```bash
-cd Screentime`
+cd screen-time`
 ```
 
 Then create the screentime database and app_name table that will store the mapping between the bundle ids and the app user-facing names by running `create_screentimedb.zsh`. First make this shell script executable, then execute it:
