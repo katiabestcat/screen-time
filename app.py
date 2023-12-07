@@ -66,7 +66,7 @@ def before_request():
             results = cursor.fetchall()
 
             # If there is no user-facing app name in the db, fetch it from the iTunes API and add it to the db
-            if not results: 
+            if not all(results[0]): 
                 try:
                     url = f"http://itunes.apple.com/GB/lookup?bundleId={row[0]}"
                     response = requests.get(url)
@@ -76,9 +76,10 @@ def before_request():
                         app_name = response_dict["results"][0]["trackName"]
                         # Remove special characters from the app name
                         clean_name = app_name.translate(str.maketrans('', '', string.punctuation))
-                        cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ? AND APPNAME IS NULL""", (clean_name, row[0]))
+                        results[0] = clean_name
+                        cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ?""", (app_name, row[0]))
                     except:
-                        print("N/A")
+                        results = [("Unknown app",)]
 
                 except(requests.RequestException, ValueError, KeyError, IndexError):
                     print("error")
