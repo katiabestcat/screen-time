@@ -74,6 +74,7 @@ def before_request():
 
                     try:
                         app_name = response_dict["results"][0]["trackName"]
+                        # Remove special characters from the app name
                         clean_name = app_name.translate(str.maketrans('', '', string.punctuation))
                         cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ? AND APPNAME IS NULL""", (clean_name, row[0]))
                     except:
@@ -83,8 +84,8 @@ def before_request():
                     print("error")
 
             # Remove special characters from the app name
-            # clean_results = [i[0].translate(str.maketrans('', '', string.punctuation)) for i in results]
-            apps.append(clean_name)
+            clean_results = [i[0].translate(str.maketrans('', '', string.punctuation)) for i in results]
+            apps.append(clean_results)
 
         # Add up total screen time for the day
         for row in rows:
