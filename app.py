@@ -49,8 +49,8 @@ def before_request():
 
         # Connect to Screentime.db to get the user-facing app names
         SCREENTIME_DB_PATH = os.environ['SCREENTIME_DB_PATH']
-        con2 = sqlite3.connect(SCREENTIME_DB_PATH, check_same_thread=False)
-        cursor = con2.cursor()
+        db = sqlite3.connect(SCREENTIME_DB_PATH, check_same_thread=False)
+        cursor = db.cursor()
 
         # Prepare the variables to be populated in the html template
         apps = []
@@ -77,7 +77,8 @@ def before_request():
                         # Remove special characters from the app name
                         clean_name = app_name.translate(str.maketrans('', '', string.punctuation))
                         results[0] = clean_name
-                        cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ?""", (app_name, row[0]))
+                        cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ?""", (clean_name, row[0]))
+                        db.commit()
                     except:
                         results = [("Unknown app",)]
 
@@ -92,7 +93,7 @@ def before_request():
         for row in rows:
             total += round(row[2])
 
-        con2.close()
+        db.close()
     
         # Flatten list of lists
         apps = [item for sublist in apps for item in sublist]
