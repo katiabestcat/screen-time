@@ -13,7 +13,7 @@ Then your partner can hopefully give you some gentle encouragement to stop scrol
 
 <p align="center">
   <img src="assets/Dashboard_example.png" width="300" height="150" alt="dashboard example">
-  <img src="assets/telegram_message.png" width="365" height="150" alt="dashboard example">
+  <img src="assets/telegram_message.png" width="182" height="75" alt="dashboard example">
 </p>
 
 ## How it works
