@@ -64,6 +64,7 @@ def before_request():
             # Query the Screentime database to get its user-facing app name 
             cursor.execute("""SELECT APPNAME FROM app_name WHERE BUNDLEID = ?""", (row[0],))
             results = cursor.fetchall()
+            print(results[0])
 
             # If there is no user-facing app name in the db, fetch it from the iTunes API and add it to the db
             if not all(results[0]): 
@@ -76,7 +77,7 @@ def before_request():
                         app_name = response_dict["results"][0]["trackName"]
                         # Remove special characters from the app name
                         clean_name = app_name.translate(str.maketrans('', '', string.punctuation))
-                        results[0] = clean_name
+                        results[0][0] = clean_name
                         cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ?""", (clean_name, row[0]))
                         db.commit()
                     except:
@@ -85,9 +86,7 @@ def before_request():
                 except(requests.RequestException, ValueError, KeyError, IndexError):
                     print("error")
 
-            # Remove special characters from the app name
-            clean_results = [i[0].translate(str.maketrans('', '', string.punctuation)) for i in results]
-            apps.append(clean_results)
+            apps.append(results[0])
 
         # Add up total screen time for the day
         for row in rows:
