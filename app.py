@@ -100,7 +100,7 @@ def before_request():
     # Fill html template with dynamic values
     html = render_template(
          "chart.html",
-        title="Today's screentime in minutes",
+        title="Today's screen time in minutes",
         labels=apps,
         values=minutes,
         total=total
