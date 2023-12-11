@@ -1,3 +1,10 @@
 body {
-    padding: 2rem 3rem;
+    padding: 20px;
+}
+@media only screen and (max-width: 600px) {
+    .chart-container {
+        width: 90%;
+        height: 80%;
+        padding: 20px;
+    }
 }
