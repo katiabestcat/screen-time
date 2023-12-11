@@ -28,6 +28,7 @@ con = sqlite3.connect(KNOWLEDGE_DB_PATH, check_same_thread=False)
 @app.before_request
 def before_request():
     # Query KnowledgeC.db to get Screentime data for the day by bundle_id and in descending order
+    # This SQL query was adapted from the SQL query used by 
     with con:
         cur = con.cursor()
         cur.execute("""
@@ -64,7 +65,6 @@ def before_request():
             # Query the Screentime database to get its user-facing app name 
             cursor.execute("""SELECT APPNAME FROM app_name WHERE BUNDLEID = ?""", (row[0],))
             results = cursor.fetchall()
-            print(results[0])
 
             # If there is no user-facing app name in the db, fetch it from the iTunes API and add it to the db
             if not all(results[0]): 
