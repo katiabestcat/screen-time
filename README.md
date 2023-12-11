@@ -128,5 +128,6 @@ Privacy: one could choose to only display the overall Screen Time, instead of th
 - Screen Time management apps - Freedom, Present, Rescue Time, Screenzen, Opal, ...  To the best of my knowledge, they don't allow you to share Screen Time information with an accountability partner. This might be because of Apple's app sandboxing, which prevents app developers from sharing data outside of the user's device without some kind of transformation on it. 
 
 
-## Credits 
+## Credits and acknowledgements
 - to the CS50 staff for making an [amazing course](https://cs50.harvard.edu/x/2023/) that enabled me to make this application
+- This product includes software developed by Sarah Edwards (Station X Labs, LLC, @iamevltwin, mac4n6.com) and other contributors as part of APOLLO (Apple Pattern of Life Lazy Output'er): namely the SQL queries used to query the KnowledgeC database were adapted from APOLLO's [knowledge_app_usage module](https://github.com/mac4n6/APOLLO/blob/master/modules/knowledge_app_usage.txt)
