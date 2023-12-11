@@ -25,10 +25,10 @@ load_dotenv()
 KNOWLEDGE_DB_PATH = os.environ['KNOWLEDGE_DB_PATH']
 con = sqlite3.connect(KNOWLEDGE_DB_PATH, check_same_thread=False)
 
-@app.before_request
-def before_request():
+@app.route("/")
+def screentime_dashboard():
     # Query KnowledgeC.db to get Screentime data for the day by bundle_id and in descending order
-    # This SQL query was adapted from the SQL query used by 
+    # This SQL query was adapted from APOLLO's knowledge_app_usage module - https://github.com/mac4n6/APOLLO/blob/master/modules/knowledge_app_usage.txt - see License for full copyright statement
     with con:
         cur = con.cursor()
         cur.execute("""
