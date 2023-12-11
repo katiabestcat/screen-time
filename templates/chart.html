@@ -11,7 +11,7 @@
 
     <body>
         <h1>{{ title }}: {{ total }}</h1>
-        <div class="chart-container" style="position: relative; height:80vh; width:160vw" content="initial-scale=1, width=device-width">
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw" content="initial-scale=1, width=device-width">
             <canvas id="myChart"></canvas>
             <script>
             // get bar chart canvas
@@ -49,6 +49,7 @@
                     }]
                 },
                 options: {
+                    maintainAspectRatio: false,
                     indexAxis: 'y',
                     plugins: {
                         legend: {
