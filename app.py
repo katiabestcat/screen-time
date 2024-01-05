@@ -69,7 +69,7 @@ def screentime_dashboard():
             # If there is no user-facing app name in the db, fetch it from the iTunes API and add it to the db
             if not all(results[0]): 
                 try:
-                    url = f"http://itunes.apple.com/GB/lookup?bundleId={row[0]}"
+                    url = f"https://itunes.apple.com/GB/lookup?bundleId={row[0]}"
                     response = requests.get(url)
                     response_dict = response.json()
 
