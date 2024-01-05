@@ -84,7 +84,7 @@ In the `.env_example` file, fill in the paths to your KnowledgeC and screentime 
 Navigate to the folder where your KnowledgeC.db resides:
 
 ```bash
-cd /Users/{user}/Library/Application\ Support/Knowledge/knowledgeC.db
+cd /Users/{user}/Library/Application\ Support/Knowledge/
 ```
 
 Make the run_app script executable: 
