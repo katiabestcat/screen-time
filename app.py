@@ -69,7 +69,7 @@ def screentime_dashboard():
             # If there is no user-facing app name in the db, fetch it from the iTunes API and add it to the db
             if not all(results[0]): 
                 try:
-                    url = f"https://itunes.apple.com/GB/lookup?bundleId={row[0]}"
+                    url = f"http://itunes.apple.com/GB/lookup?bundleId={row[0]}"
                     response = requests.get(url)
                     response_dict = response.json()
 
@@ -77,9 +77,9 @@ def screentime_dashboard():
                         app_name = response_dict["results"][0]["trackName"]
                         # Remove special characters from the app name
                         clean_name = app_name.translate(str.maketrans('', '', string.punctuation))
-                        results[0][0] = clean_name
                         cursor.execute("""UPDATE app_name SET APPNAME = ? WHERE BUNDLEID = ?""", (clean_name, row[0]))
                         db.commit()
+                        results[0][0] = clean_name
                     except:
                         results = [("Unknown app",)]
 
