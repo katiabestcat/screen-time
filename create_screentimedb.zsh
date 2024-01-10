@@ -1,8 +1,29 @@
 #!/bin/zsh
 
+# this creates the screentime db 
+
+sqlite3 screentime.db << 'EOF'
+CREATE TABLE screentime ( 
+   zobject_table_id INTEGER PRIMARY KEY, 
+   start TIMESTAMP, 
+   end TIMESTAMP, 
+   bundle_id VARCHAR, 
+   usage_seconds INTEGER, 
+   usage_minutes REAL, 
+   device_id VARCHAR, 
+   day VARCHAR, 
+   entry_creation TIMESTAMP 
+);
+
+CREATE TABLE app_name ( 
+   PK INTEGER PRIMARY KEY, 
+   BUNDLEID VARCHAR, 
+   APPNAME VARCHAR 
+);
+EOF
+
 # connects to the KnowledgeC.db on the user's Mac. The KnowledgeC.db is typically found at /Users/{user}/Library/Application\ Support/Knowledge/knowledgeC.db 
-# creates the screentime db (if the db doesn't yet exist at that path, this query will create it)
-# populates the screentime.db and table with your Screen Time information the KnowledgeC.db
+# this populates the screentime.db and table with your Screen Time information the KnowledgeC.db
 # creates the app_name table to host the bundle id - app name mapping
 
 sqlite3 <path/to/your/KnowledgeC.db> << 'EOF'
