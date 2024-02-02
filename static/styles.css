@@ -8,3 +8,16 @@ body {
         padding: 20px;
     }
 }
+
+.chart-container {
+    position: relative;
+    height: 40vh;
+    width: 80vw;
+}
+
+@media (max-width: 600px) {
+    .chart-container {
+        height: 30vh;
+        width: 90vw;
+    }
+}
