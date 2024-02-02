@@ -3,16 +3,18 @@
 <html lang="en">
 
     <head>
-        <meta charset="utf-8" content="initial-scale=1, width=device-width"/>
-        <title>Today&#39;s screentime in minutes</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="initial-scale=1, width=device-width"/>
+        <title>Today&#39;s screen time in minutes</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
         <link href="styles.css" rel="stylesheet">
     </head>
 
     <body>
-        <h1>Today&#39;s screentime in minutes: 64</h1>
-        <div class="chart-container" style="position: relative; height:80vh; width:160vw" content="initial-scale=1, width=device-width">
+        <h1>Today&#39;s screen time in minutes: 48</h1>
+        <div class="chart-container">
             <canvas id="myChart"></canvas>
+        </div>
             <script>
             // get bar chart canvas
             var ctx = document.getElementById("myChart").getContext("2d");
@@ -21,11 +23,11 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Twitter X", "Apple Music", "Instagram", "Forest Focus for Productivity", "IBKR Mobile  Invest", "Apple Podcasts", "Discord"],
+                    labels: ["Instagram", "IBKR Mobile  Invest Worldwide", "X", "Safari", "WhatsApp Messenger", "Reddit", "Google Maps  Transit  Food"],
                     datasets: [{ 
                             axis: 'y',
                             label: 'screentime',
-                            data: JSON.parse('[41, 6, 3, 3, 2, 2, 2]'),
+                            data: JSON.parse('[8, 8, 7, 7, 4, 3, 3]'),
                             fill: false,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -49,6 +51,8 @@
                     }]
                 },
                 options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
                     indexAxis: 'y',
                     plugins: {
                         legend: {
@@ -58,7 +62,5 @@
                 }
             });
             </script>
-        </div>
     </body>
-
   </html>
